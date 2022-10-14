@@ -23,7 +23,7 @@ function saveClip(folder, file) {
     fs.rename(hiHome + "\\" + folder + "\\" + file, viHome + folder + "\\" + file, (e) => { })
     chips.style.display = "block";
     saving.style.display = "none";
-    reload()
+    reload(folder)
 }
 
 function saveAll(folder) {
@@ -33,16 +33,19 @@ function saveAll(folder) {
         fs.rename(hiHome + "\\" + folder + "\\" + file, viHome + folder + "\\" + file, (e) => { })
         chips.style.display = "block";
         saving.style.display = "none";
-        reload()
+        reload(folder)
     })
 }
 
-function reload() {
+function reload(folderName = null) {
     let type = "";
     let hiHome = localStorage.getItem("highlightsHome");
     let viHome = localStorage.getItem("videoHome");
+
     if (type == "") {
+        highlights.innerHTML = "";
         chips.innerHTML = "";
+
         fs.readdirSync(hiHome).forEach(folder => {
             if (fs.readdirSync(hiHome + "\\" + folder)) {
                 let div = document.createElement("div");
@@ -54,6 +57,9 @@ function reload() {
                 chips.appendChild(div)
             }
         })
+        if (folderName) {
+            selectHighlights(folderName)
+        }
     }
 }
 
@@ -73,6 +79,18 @@ function reloadCss() {
 
 function selectHighlights(folder) {
     highlights.innerHTML = "";
+    document.getElementById("choosegame").innerText = folder;
+    if (folder == "eh.Done-Folder::") {
+        document.getElementById("choosegame").innerText = "Choose a game to save your highlights from!";
+        return;
+    }
+    let div = document.createElement("button");
+    div.className = "btn highlightChip z-depth-2 noselect";
+    div.innerText = "Close";
+    div.onclick = e => {
+        selectHighlights("eh.Done-Folder::");
+    }
+    highlights.appendChild(div)
     let saveAllButton = document.createElement("button");
     saveAllButton.className = "btn";
     saveAllButton.appendChild(document.createTextNode("Save All Clips"))
@@ -97,10 +115,11 @@ function selectHighlights(folder) {
         highlights.appendChild(p)
         saving.style.display = "none"
     })
+
 }
 
 
-const {ipcRenderer} = require('electron');
+const { ipcRenderer } = require('electron');
 const closeApp = document.getElementById('close-app');
 closeApp.addEventListener('click', () => {
     ipcRenderer.send('quit-app');
