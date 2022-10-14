@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extra Highlights</title>
 </head>
+
 <body>
     <noscript>This project requires JavaScript to be enabled.</noscript>
-    <h1>Extra Highlights</h1>
-    <h2 id="saving" style="display:none;">Saving clip...</h2>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Extra Highlights</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
+        </div>
+      </nav>    
+      <h3>Choose a game to save your highlights from!</h3>        
+      <br><br>
+    <p id="saving" style="display:none;font-size:40px;">This project requires JavaScript.</p>
+    <div id="chips"></div>
     <div id="highlights"></div>
     <script src="index.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
+
 </html>
