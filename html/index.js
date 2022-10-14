@@ -1,7 +1,9 @@
 const fs = require('fs')
 const os = require('os');
 const hiHome = os.userInfo().homedir+"\\AppData\\Local\\Temp\\Highlights";
+const viHome = os.userInfo().homedir+"\\Videos\\";
 let highlights = document.getElementById("highlights");
+let saving = document.getElementById("saving");
 let folders = [];
 
 if(!fs.existsSync(hiHome)) {
@@ -11,29 +13,21 @@ if(!fs.existsSync(hiHome)) {
 reload()
 
 function saveClip(folder, file) {
-    console.log("Saving "+hiHome+"\\"+folder+"\\"+file)
     highlights.style.display = "none";
-    document.getElementById("saving").style.display = "block";
-    fs.rename(hiHome+"\\"+folder+"\\"+file, os.userInfo().homedir+"\\Videos\\"+folder+"\\"+file, (e) => {
-        console.log(e)
-    })
+    saving.style.display = "block";
+    fs.rename(hiHome+"\\"+folder+"\\"+file, viHome+folder+"\\"+file, (e) => {})
     highlights.style.display = "block";
-    document.getElementById("saving").style.display = "none";
+    saving.style.display = "none";
     reload()
 }
 
 function saveAll(folder) {
     fs.readdirSync(hiHome+"\\"+folder).forEach(file => {
-        console.log("Saving "+hiHome+"\\"+folder+"\\"+file)
         highlights.style.display = "none";
-        document.getElementById("saving").style.display = "block";
-        fs.rename(hiHome+"\\"+folder+"\\"+file, os.userInfo().homedir+"\\Videos\\"+folder+"\\"+file, (e) => {
-            if(e) {
-                console.log(e)
-            }
-        })
+        saving.style.display = "block";
+        fs.rename(hiHome+"\\"+folder+"\\"+file, viHome+folder+"\\"+file, (e) => {})
         highlights.style.display = "block";
-        document.getElementById("saving").style.display = "none";
+        saving.style.display = "none";
         reload()
     })
 }
@@ -80,6 +74,6 @@ function isDirEmpty(dirname) {
 }
 
 if(highlights.innerHTML == "") {
-    document.getElementById("saving").innerText = "Go capture some highlights, you don't have any unsaved ones!";
-    document.getElementById("saving").style.display = "block"
+    saving.innerText = "Go capture some highlights, you don't have any unsaved ones!";
+    saving.style.display = "block"
 }
