@@ -1,4 +1,8 @@
-const { BrowserWindow, app } = require('electron');
+const { BrowserWindow, app, ipcMain } = require('electron');
+
+ipcMain.on('quit-app', (evt, arg) => {
+  app.quit()
+})
 
 function start() {
     let win = new BrowserWindow({
@@ -8,10 +12,13 @@ function start() {
             nodeIntegration: true,
             contextIsolation: false,
             nodeIntegrationInWorker: true
-        }
+        },
+        autoHideMenuBar: true,
+        frame: false
     })
     win.loadFile("./html/index.html")
 }
+
 
 app.on('ready', () => {
     start()

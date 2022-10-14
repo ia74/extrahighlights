@@ -10,6 +10,15 @@
   transition-duration: 0.2s;
 }
 
+.nav-wrapper {
+    -webkit-app-region: drag;
+  
+}
+
+#nav-mobile {
+    -webkit-app-region: no-drag;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

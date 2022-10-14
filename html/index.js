@@ -1,14 +1,22 @@
-const fs = require('fs')
+const fs = require('fs');
 const os = require('os');
-const hiHome = os.userInfo().homedir + "\\AppData\\Local\\Temp\\Highlights";
-const viHome = os.userInfo().homedir + "\\Videos\\";
+let hiHome = localStorage.getItem("highlightsHome");
+let viHome = localStorage.getItem("videoHome");
 let chips = document.getElementById("chips");
 let highlights = document.getElementById("highlights");
 let saving = document.getElementById("saving");
 let folders = [];
 
-reload()
+if (!localStorage.getItem("highlightsHome")) {
+    localStorage.setItem("highlightsHome", os.userInfo().homedir + "\\AppData\\Local\\Temp\\Highlights");
+}
 
+if (!localStorage.getItem("videoHome")) {
+    localStorage.setItem("videoHome", os.userInfo().homedir + "\\Videos\\");
+
+}
+
+reload()
 function saveClip(folder, file) {
     chips.style.display = "none";
     saving.style.display = "block";
@@ -31,6 +39,8 @@ function saveAll(folder) {
 
 function reload() {
     let type = "";
+    let hiHome = localStorage.getItem("highlightsHome");
+    let viHome = localStorage.getItem("videoHome");
     if (type == "") {
         chips.innerHTML = "";
         fs.readdirSync(hiHome).forEach(folder => {
@@ -88,3 +98,10 @@ function selectHighlights(folder) {
         saving.style.display = "none"
     })
 }
+
+
+const {ipcRenderer} = require('electron');
+const closeApp = document.getElementById('close-app');
+closeApp.addEventListener('click', () => {
+    ipcRenderer.send('quit-app');
+});
