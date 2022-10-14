@@ -33,6 +33,7 @@ function saveAll(folder) {
 }
 
 function reload() {
+    reloadCss();
     let type = "";
     if(type == "") {
         highlights.innerHTML = "";
@@ -41,6 +42,7 @@ function reload() {
             let details = document.createElement("details");
             let summary = document.createElement("summary");
             let saveAllButton = document.createElement("button");
+            saveAllButton.className = "btn";
             saveAllButton.appendChild(document.createTextNode("Save All Clips"))
             saveAllButton.onclick = () => {
                 saveAll(folder);
@@ -76,4 +78,15 @@ function isDirEmpty(dirname) {
 if(highlights.innerHTML == "") {
     saving.innerText = "Go capture some highlights, you don't have any unsaved ones!";
     saving.style.display = "block"
+}
+
+function reloadCss()
+{
+    var links = document.getElementsByTagName("link");
+    for (var cl in links)
+    {
+        var link = links[cl];
+        if (link.rel === "stylesheet")
+            link.href += "";
+    }
 }
