@@ -1,5 +1,6 @@
 * {
   font-family: "Bahnschrift", sans-serif;
+  /* border: 1px solid black */
 }
 
 .highlightChip:hover {
@@ -16,7 +17,28 @@
 }
 
 #nav-mobile {
+  border-radius: 5px;
+  margin: 0 auto;
   -webkit-app-region: no-drag;
+  text-decoration: none;
+  list-style-type: none;
+  width: max-content;
+  display: flex;
+}
+
+
+#nav-mobile > li > a {
+  text-decoration: none;
+  width: max-content;
+  padding: 5px;
+  background-color: rgb(240, 80, 17);
+  transition-duration: .5s;
+  border-radius: 5px;
+}
+
+#nav-mobile > li > a:hover {
+  cursor: pointer;
+  background-color: rgb(240, 24, 17);
 }
 
 .brand-logo {
@@ -52,27 +74,8 @@
   display: flex;
 }
 
-* {
-  border: 1px solid black;
-}
-
-nav {
-  background-color: rgb(230, 145, 9);
-  border-radius: 5px;
-  margin: 0 auto;
-}
-
-ul {
-  text-decoration: none;
-}
-
 body {
   background-color: rgb(174, 114, 18);
-}
-
-nav>div>ul>li {
-  background-color: rgb(247, 157, 13);
-  text-decoration: none;
 }
 
 .chip {
