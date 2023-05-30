@@ -28,3 +28,33 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+#chips {
+  display: flex;
+}
+
+nav {
+  background-color: rgb(230, 145, 9);
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+ul {
+  text-decoration: none;
+}
+
+body {
+  background-color: rgb(174, 114, 18);
+}
+
+nav > div > ul > li {
+  background-color: rgb(247, 157, 13);
+  text-decoration: none;
+}
+
+.chip {
+  background-color: rgb(118, 174, 222);
+  width: max-content;
+  padding: 10px;
+  border-radius: 5px;
+}
