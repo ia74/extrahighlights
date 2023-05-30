@@ -19,6 +19,10 @@
   -webkit-app-region: no-drag;
 }
 
+.brand-logo {
+  font-size: 28px;
+}
+
 #choosegame {
   font-size: 40px;
 }
@@ -46,6 +50,10 @@
 
 #chips {
   display: flex;
+}
+
+* {
+  border: 1px solid black;
 }
 
 nav {
